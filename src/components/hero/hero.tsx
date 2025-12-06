@@ -1,0 +1,52 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { HeroLines } from "./hero-lines"
+import { HeroAvatar } from "./hero-avatar"
+
+export function Hero() {
+    return (
+        <section className="relative w-full overflow-hidden min-h-[65vh] flex items-center">
+            <HeroLines />
+            <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8 px-6 md:px-12 py-12">
+                <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="flex flex-col gap-6 w-full md:w-[55%] text-center md:text-left"
+                >
+                    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight dark:text-white">
+                        Hola, soy Diego.
+                    </h1>
+
+                    <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300">
+                        Developer apasionado por aprender y construir soluciones digitales.
+                    </p>
+
+                    <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                        <Button size="lg" className="font-semibold w-full md:w-auto">
+                            Ver proyectos
+                        </Button>
+
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
+                        >
+                            Sobre mí
+                        </Button>
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                    className="relative w-[180px] h-[180px] md:w-[260px] md:h-[260px]"
+                >
+                    <HeroAvatar />
+                </motion.div>
+            </div>
+        </section>
+    )
+}
