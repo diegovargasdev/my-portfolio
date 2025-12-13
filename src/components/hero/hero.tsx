@@ -30,7 +30,6 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                        {/* Botón "Ver proyectos" - redirige a la sección de proyectos */}
                         <Button
                             size="lg"
                             className="font-semibold w-full md:w-auto"
@@ -41,8 +40,6 @@ export function Hero() {
                                 {t('viewProjects')}
                             </a>
                         </Button>
-
-                        {/* Botón "Sobre mí" - redirige a la sección about */}
                         <Button
                             size="lg"
                             variant="outline"
