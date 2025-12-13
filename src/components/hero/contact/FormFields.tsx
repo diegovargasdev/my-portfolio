@@ -2,7 +2,6 @@ import React from "react";
 import { FormState, FieldErrors, TouchedFields } from "./FormSchema";
 import { getFieldValue } from "./FormUtils";
 
-// Props para los campos
 interface FieldProps {
     form: FormState;
     errors: FieldErrors;
@@ -12,7 +11,6 @@ interface FieldProps {
     getInputClass: (fieldName: keyof FormState) => string;
 }
 
-// Componente para el campo honeypot
 export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur }) => (
     <div className="absolute left-[-9999px]" aria-hidden="true">
         <label htmlFor="website">No llenar este campo</label>
@@ -30,7 +28,6 @@ export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur }) 
     </div>
 );
 
-// Componente para mostrar errores
 export const ErrorMessage: React.FC<{ error: string }> = ({ error }) => (
     <div className="flex items-center gap-1 mt-1">
         <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
@@ -40,7 +37,6 @@ export const ErrorMessage: React.FC<{ error: string }> = ({ error }) => (
     </div>
 );
 
-// Campo de texto input
 export const TextInput: React.FC<
     FieldProps & {
         name: keyof FormState;
@@ -68,7 +64,6 @@ export const TextInput: React.FC<
     </div>
 );
 
-// Campo de textarea
 export const TextAreaInput: React.FC<
     FieldProps & {
         name: keyof FormState;

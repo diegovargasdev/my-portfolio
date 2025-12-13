@@ -4,8 +4,11 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { HeroLines } from "./hero-lines"
 import { HeroAvatar } from "./hero-avatar"
+import { useTranslations } from 'next-intl'
 
 export function Hero() {
+    const t = useTranslations('Hero')
+
     return (
         <section className="relative w-full overflow-hidden min-h-[65vh] flex items-center">
             <HeroLines />
@@ -17,16 +20,16 @@ export function Hero() {
                     className="flex flex-col gap-6 w-full md:w-[55%] text-center md:text-left"
                 >
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight dark:text-white">
-                        Hola, soy Diego.
+                        {t('greeting')}
                     </h1>
 
                     <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300">
-                        Developer apasionado por aprender y construir soluciones digitales.
+                        {t('description')}
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                         <Button size="lg" className="font-semibold w-full md:w-auto">
-                            Ver proyectos
+                            {t('viewProjects')}
                         </Button>
 
                         <Button
@@ -34,7 +37,7 @@ export function Hero() {
                             variant="outline"
                             className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
                         >
-                            Sobre mí
+                            {t('aboutMe')}
                         </Button>
                     </div>
                 </motion.div>

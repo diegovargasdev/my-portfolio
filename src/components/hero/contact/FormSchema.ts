@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Esquema de validación con Zod
 export const formSchema = z.object({
     name: z
         .string()
@@ -29,7 +28,6 @@ export const formSchema = z.object({
         .default(""),
 });
 
-// Tipos
 export type FormState = z.infer<typeof formSchema>;
 export type FieldErrors = Partial<Record<keyof FormState, string>>;
 export type TouchedFields = Partial<Record<keyof FormState, boolean>>;

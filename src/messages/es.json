@@ -2,5 +2,11 @@
     "Home": {
         "title": "Bienvenido",
         "description": "Esta es la versión en español"
+    },
+    "Hero": {
+        "greeting": "Hola, soy Diego.",
+        "description": "Developer apasionado por aprender y construir soluciones digitales.",
+        "viewProjects": "Ver proyectos",
+        "aboutMe": "Sobre mí"
     }
 }

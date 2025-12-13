@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { formSchema, FormState, FieldErrors } from "./FormSchema";
 
-// Validar campo individual
 export const validateField = (
     name: keyof FormState,
     value: string,
@@ -9,7 +8,6 @@ export const validateField = (
 ): boolean => {
     const stringValue = value || "";
 
-    // Para el campo website (honeypot)
     if (name === "website") {
         if (stringValue.trim() !== "") {
             setErrors((prev) => ({ ...prev, [name]: "Este campo debe estar vacío" }));
@@ -20,7 +18,6 @@ export const validateField = (
     }
 
     try {
-        // Validar usando el esquema parcialmente
         if (name === "name") {
             formSchema.shape.name.parse(stringValue);
         } else if (name === "email") {
@@ -44,7 +41,6 @@ export const validateField = (
     }
 };
 
-// Validar todo el formulario
 export const validateForm = (
     form: FormState,
     setErrors: (errors: FieldErrors | ((prev: FieldErrors) => FieldErrors)) => void
