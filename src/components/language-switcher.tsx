@@ -22,21 +22,14 @@ export function LanguageSwitcher() {
     const router = useRouter()
     const pathname = usePathname()
     
-    // Obtener el locale de los params o del pathname
     const locale = (params?.locale as string) || pathname.split('/')[1] || 'es'
 
     const switchLocale = (newLocale: string) => {
-        // El pathname incluye el locale (ej: /es o /es/projects/...)
-        // Remover el locale actual de la ruta
         const segments = pathname.split('/').filter(Boolean)
         const currentLocale = segments[0]
-        
-        // Si el primer segmento es un locale válido, lo removemos
         const pathWithoutLocale = locales.includes(currentLocale as any)
             ? '/' + segments.slice(1).join('/')
             : pathname
-        
-        // Construir la nueva ruta con el nuevo locale
         const newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
         router.push(newPath)
         router.refresh()
