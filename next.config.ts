@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-
+  devIndicators: false,
   turbopack: {
     rules: {
       '*.svg': {
