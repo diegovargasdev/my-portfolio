@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
@@ -42,7 +43,7 @@ export default function Navbar() {
                     </Link>
                 </motion.div>
                 <motion.div
-                    className="flex gap-6 text-sm font-medium"
+                    className="flex gap-6 items-center text-sm font-medium"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
@@ -65,6 +66,7 @@ export default function Navbar() {
                             </Link>
                         </motion.div>
                     ))}
+                    <LanguageSwitcher />
                 </motion.div>
             </nav>
         </motion.header>
