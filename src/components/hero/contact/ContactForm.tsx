@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useTranslations } from 'next-intl';
 import { HoneypotField, TextInput, TextAreaInput } from "./FormFields";
 import { FormState, FieldErrors, TouchedFields, FormStatus } from "./FormSchema";
 import { validateField, validateForm } from "./FormValidation";
@@ -8,6 +9,8 @@ import { getFieldValue, isFormValid, shouldLimitCharacters } from "./FormUtils";
 import { StatusMessage, SubmitButton } from "./FormStatus";
 
 export default function ContactForm() {
+    const t = useTranslations('ContactForm');
+    
     const [form, setForm] = React.useState<FormState>({
         name: "",
         email: "",
@@ -33,7 +36,7 @@ export default function ContactForm() {
 
         setForm((prev) => ({ ...prev, [name]: value }));
         if (touched[name as keyof FormState]) {
-            validateField(name as keyof FormState, value, setErrors);
+            validateField(name as keyof FormState, value, setErrors, t);
         }
     };
 
@@ -41,7 +44,7 @@ export default function ContactForm() {
         const { name } = e.target;
         const fieldValue = getFieldValue(form, name as keyof FormState);
         setTouched((prev) => ({ ...prev, [name]: true }));
-        validateField(name as keyof FormState, fieldValue, setErrors);
+        validateField(name as keyof FormState, fieldValue, setErrors, t);
     };
 
     const getInputClass = (fieldName: keyof FormState) => {
@@ -71,13 +74,13 @@ export default function ContactForm() {
         };
         setTouched(allTouched);
 
-        if (!validateForm(form, setErrors)) {
-            setStatus({ ok: false, msg: "Por favor corrige los errores en el formulario" });
+        if (!validateForm(form, setErrors, t)) {
+            setStatus({ ok: false, msg: t('formValidationError') });
             return;
         }
 
         if (getFieldValue(form, "website").trim() !== "") {
-            setStatus({ ok: false, msg: "Error de validación. Por favor, recarga la página." });
+            setStatus({ ok: false, msg: t('honeypotError') });
             return;
         }
 
@@ -101,12 +104,12 @@ export default function ContactForm() {
             const data = await res.json();
 
             if (!res.ok || data.error) {
-                throw new Error(data.error || "Error al enviar el mensaje");
+                throw new Error(data.error || t('sendError'));
             }
 
             setStatus({
                 ok: true,
-                msg: "¡Mensaje enviado con éxito! Te responderemos pronto."
+                msg: t('successMessage')
             });
 
             setForm({ name: "", email: "", subject: "", message: "", website: "" });
@@ -118,7 +121,7 @@ export default function ContactForm() {
             console.error("Error en el envío:", error);
             setStatus({
                 ok: false,
-                msg: error instanceof Error ? error.message : "Error de red. Por favor, intenta más tarde.",
+                msg: error instanceof Error ? error.message : t('networkError'),
             });
         } finally {
             setLoading(false);
@@ -134,6 +137,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 getInputClass={getInputClass}
+                t={t}
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -145,7 +149,7 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     getInputClass={getInputClass}
                     name="name"
-                    placeholder="Nombre *"
+                    placeholder={t('namePlaceholder')}
                     required
                 />
 
@@ -158,7 +162,7 @@ export default function ContactForm() {
                     getInputClass={getInputClass}
                     name="email"
                     type="email"
-                    placeholder="Correo electrónico *"
+                    placeholder={t('emailPlaceholder')}
                     required
                 />
             </div>
@@ -172,7 +176,7 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     getInputClass={getInputClass}
                     name="subject"
-                    placeholder="Asunto (opcional)"
+                    placeholder={t('subjectPlaceholder')}
                 />
             </div>
 
@@ -185,9 +189,10 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     getInputClass={getInputClass}
                     name="message"
-                    placeholder="Mensaje *"
+                    placeholder={t('messagePlaceholder')}
                     characterCount={characterCount}
                     required
+                    t={t}
                 />
             </div>
 
@@ -196,6 +201,7 @@ export default function ContactForm() {
                     loading={loading}
                     status={status}
                     disabled={loading || !isFormValid(form, errors)}
+                    t={t}
                 />
 
                 <StatusMessage status={status} loading={loading} />

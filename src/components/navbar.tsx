@@ -1,20 +1,44 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useParams, usePathname } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { useTranslations } from 'next-intl'
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
+    const params = useParams()
+    const pathname = usePathname()
+    const locale = (params?.locale as string) || 'es'
+    const t = useTranslations('Navbar')
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10)
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
+
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault()
+        const hash = href.split('#')[1]
+        const element = document.getElementById(hash)
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }
+
+    const getBasePath = () => {
+        if (pathname.startsWith(`/${locale}`)) {
+            return `/${locale}`
+        }
+        return locale ? `/${locale}` : ''
+    }
+
+    const basePath = getBasePath()
 
     return (
         <motion.header
@@ -33,10 +57,10 @@ export default function Navbar() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 >
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href={`/${locale}`} className="flex items-center gap-2">
                         <Image
                             src="/logo/Logo_Ligth.png"
-                            alt="Logo de Diego"
+                            alt={t('logoAlt')}
                             width={40}
                             height={40}
                         />
@@ -49,9 +73,21 @@ export default function Navbar() {
                     transition={{ delay: 0.3, duration: 0.5 }}
                 >
                     {[
-                        { label: "Sobre mí", href: "/#about", color: "hover:text-green-500" },
-                        { label: "Proyectos", href: "/#projects", color: "hover:text-pink-500" },
-                        { label: "Contacto", href: "/#contact", color: "hover:text-pink-500" },
+                        {
+                            label: t('about'),
+                            href: `${basePath}#about`,
+                            color: "hover:text-green-500"
+                        },
+                        {
+                            label: t('projects'),
+                            href: `${basePath}#projects`,
+                            color: "hover:text-pink-500"
+                        },
+                        {
+                            label: t('contact'),
+                            href: `${basePath}#contact`,
+                            color: "hover:text-pink-500"
+                        },
                     ].map((item) => (
                         <motion.div
                             key={item.href}
@@ -60,6 +96,7 @@ export default function Navbar() {
                         >
                             <Link
                                 href={item.href}
+                                onClick={(e) => handleAnchorClick(e, item.href)}
                                 className={cn("transition", item.color)}
                             >
                                 {item.label}

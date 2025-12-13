@@ -9,11 +9,12 @@ interface FieldProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     getInputClass: (fieldName: keyof FormState) => string;
+    t?: (key: string) => string;
 }
 
-export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur }) => (
+export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur, t }) => (
     <div className="absolute left-[-9999px]" aria-hidden="true">
-        <label htmlFor="website">No llenar este campo</label>
+        <label htmlFor="website">{t ? t('honeypotLabel') : 'No llenar este campo'}</label>
         <input
             id="website"
             name="website"
@@ -72,7 +73,7 @@ export const TextAreaInput: React.FC<
         characterCount: number;
         required?: boolean;
     }
-> = ({ form, errors, touched, onChange, onBlur, getInputClass, name, placeholder, rows = 6, characterCount, required = false }) => (
+> = ({ form, errors, touched, onChange, onBlur, getInputClass, name, placeholder, rows = 6, characterCount, required = false, t }) => (
     <div className="relative">
         <textarea
             name={name}
@@ -91,7 +92,7 @@ export const TextAreaInput: React.FC<
         )}
         <div className="flex justify-between items-center mt-2 px-1">
             <p className="text-sm text-neutral-400">
-                * Campos obligatorios
+                {t ? t('requiredFields') : '* Campos obligatorios'}
             </p>
             <p className={`text-sm ${characterCount > 1000 ? 'text-red-500' : characterCount >= 10 ? 'text-green-500' : 'text-neutral-400'}`}>
                 {characterCount}/1000

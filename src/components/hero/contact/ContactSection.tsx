@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
+import { useTranslations } from 'next-intl';
 
 export default function ContactSection() {
+    const t = useTranslations('Contact');
+
     return (
         <section id="contact" className="py-28 relative overflow-hidden">
 
@@ -23,7 +26,7 @@ export default function ContactSection() {
                     transition={{ duration: 0.5 }}
                     className="text-3xl md:text-4xl font-semibold text-center mb-6"
                 >
-                    Hablemos de tu proyecto
+                    {t('title')}
                 </motion.h2>
 
                 <motion.p
@@ -32,7 +35,7 @@ export default function ContactSection() {
                     transition={{ delay: 0.1 }}
                     className="text-center text-muted-foreground mb-12 max-w-xl mx-auto"
                 >
-                    Completa el formulario y me pondré en contacto contigo lo antes posible.
+                    {t('subtitle')}
                 </motion.p>
 
                 <motion.div
