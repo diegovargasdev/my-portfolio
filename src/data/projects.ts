@@ -256,5 +256,4 @@ export const getProjects = (locale: string = 'es') => {
     return projectsData[locale as 'es' | 'en'] || projectsData.es;
 };
 
-// Opcional: exportar por defecto para compatibilidad
 export const projects = getProjects('es');

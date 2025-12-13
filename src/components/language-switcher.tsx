@@ -9,7 +9,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { motion } from 'framer-motion'
-import { Languages } from 'lucide-react'
+import { Languages, Globe } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const localeNames: Record<string, string> = {
@@ -17,11 +17,15 @@ const localeNames: Record<string, string> = {
     en: 'English',
 }
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+    compact?: boolean
+}
+
+export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
     const params = useParams()
     const router = useRouter()
     const pathname = usePathname()
-    
+
     const locale = (params?.locale as string) || pathname.split('/')[1] || 'es'
 
     const switchLocale = (newLocale: string) => {
@@ -33,6 +37,36 @@ export function LanguageSwitcher() {
         const newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
         router.push(newPath)
         router.refresh()
+    }
+
+    if (compact) {
+        return (
+            <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors outline-none w-10 h-10">
+                    <Globe className="h-5 w-5" />
+                    <span className="sr-only">
+                        {localeNames[locale] || locale.toUpperCase()}
+                    </span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[120px]">
+                    {locales.map((loc) => (
+                        <DropdownMenuItem
+                            key={loc}
+                            onClick={() => switchLocale(loc)}
+                            className={cn(
+                                "cursor-pointer",
+                                locale === loc && "bg-accent font-semibold"
+                            )}
+                        >
+                            {localeNames[loc]}
+                            {locale === loc && (
+                                <span className="ml-auto text-xs">✓</span>
+                            )}
+                        </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+        )
     }
 
     return (
@@ -68,4 +102,3 @@ export function LanguageSwitcher() {
         </DropdownMenu>
     )
 }
-
