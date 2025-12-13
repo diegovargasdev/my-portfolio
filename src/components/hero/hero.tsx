@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button"
 import { HeroLines } from "./hero-lines"
 import { HeroAvatar } from "./hero-avatar"
 import { useTranslations } from 'next-intl'
+import { useAnchorNavigation } from "@/hooks/useAnchorNavigation"
 
 export function Hero() {
     const t = useTranslations('Hero')
+    const { handleAnchorClick, buildHref } = useAnchorNavigation()
 
     return (
         <section className="relative w-full overflow-hidden min-h-[65vh] flex items-center">
@@ -28,16 +30,29 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                        <Button size="lg" className="font-semibold w-full md:w-auto">
-                            {t('viewProjects')}
+                        {/* Botón "Ver proyectos" - redirige a la sección de proyectos */}
+                        <Button
+                            size="lg"
+                            className="font-semibold w-full md:w-auto"
+                            onClick={(e) => handleAnchorClick(e as any, buildHref('projects'))}
+                            asChild
+                        >
+                            <a href={buildHref('projects')}>
+                                {t('viewProjects')}
+                            </a>
                         </Button>
 
+                        {/* Botón "Sobre mí" - redirige a la sección about */}
                         <Button
                             size="lg"
                             variant="outline"
                             className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
+                            onClick={(e) => handleAnchorClick(e as any, buildHref('about'))}
+                            asChild
                         >
-                            {t('aboutMe')}
+                            <a href={buildHref('about')}>
+                                {t('aboutMe')}
+                            </a>
                         </Button>
                     </div>
                 </motion.div>
