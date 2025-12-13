@@ -1,0 +1,116 @@
+{
+  "Home": {
+    "title": "Welcome",
+    "description": "This is the English version"
+  },
+  "Hero": {
+    "greeting": "Hello, I'm Diego.",
+    "description": "Developer passionate about learning and building digital solutions.",
+    "viewProjects": "View projects",
+    "aboutMe": "About me"
+  },
+  "About": {
+    "title": "About me",
+    "paragraph1": "I'm Diego, a Front-End focused developer with a degree in Computer Systems Engineering. I'm passionate about creating clean, fast, and functional interfaces, combining design and technology to build modern web experiences.",
+    "paragraph2": "I primarily work with React, Next.js, shadcn/ui, Tailwind, and REST APIs. I specialize in transforming ideas into usable interfaces, maintaining good practices, clear architecture, and optimal performance.",
+    "paragraph3": "Each project has been an opportunity to delve into topics like accessibility, responsive design, animations, component patterns, API consumption, and building scalable visual systems.",
+    "paragraph4": "I'm currently looking to continue growing as a Full-Stack developer, expanding my backend and cloud skills while developing projects with professional quality and attention to detail.",
+    "avatarAlt": "Pixel art avatar"
+  },
+  "Skills": {
+    "title": "What I bring as a developer",
+    "skills": {
+      "frontend": {
+        "title": "Modern Front‑End Development",
+        "text": "I build interfaces with React, Next.js and reusable components, following best practices and focusing on user experience."
+      },
+      "apis": {
+        "title": "API and CMS Integration",
+        "text": "I consume REST APIs and headless systems like Hygraph, creating clean, efficient, and fully dynamic data flows."
+      },
+      "architecture": {
+        "title": "Architecture and Modularity",
+        "text": "I develop complete modules within existing projects without breaking the structure, integrating logic, views, and internal configurations."
+      },
+      "uiux": {
+        "title": "UI/UX and Componentization",
+        "text": "I use shadcn/ui, Material UI and Tailwind to create consistent, polished interfaces focused on accessibility."
+      },
+      "optimization": {
+        "title": "Optimization and Best Practices",
+        "text": "I focus on performance, organization, readability and modern patterns to ensure solid and scalable code."
+      },
+      "growth": {
+        "title": "Growth Mindset",
+        "text": "I learn fast, adapt quickly and enjoy building complete solutions with modern technologies."
+      }
+    }
+  },
+  "Projects": {
+    "title": "Featured Projects",
+    "subtitle": "Real solutions, intuitive interfaces, and maintainable code."
+  },
+  "ProjectPage": {
+    "objective": "Project Objective",
+    "myRole": "My Role",
+    "challenges": "Development Challenges",
+    "results": "Results",
+    "screenshotAlt": "screenshot",
+    "view": "View {number}",
+    "notFound": "Project not found",
+    "disclaimer": "Disclaimer: This module was developed for a company in the financial sector. All visual content belongs to that company and is used solely for demonstration purposes within this portfolio."
+  },
+  "Contact": {
+    "title": "Let's talk about your project",
+    "subtitle": "Fill out the form and I'll get back to you as soon as possible."
+  },
+  "ContactForm": {
+    "name": "Name",
+    "namePlaceholder": "Name *",
+    "email": "Email",
+    "emailPlaceholder": "Email *",
+    "subject": "Subject",
+    "subjectPlaceholder": "Subject (optional)",
+    "message": "Message",
+    "messagePlaceholder": "Message *",
+    "sendButton": "Send message",
+    "sendingButton": "Sending...",
+    "successMessage": "Message sent successfully! We'll get back to you soon.",
+    "validationError": "Validation error",
+    "formValidationError": "Please correct the errors in the form",
+    "honeypotError": "Validation error. Please reload the page.",
+    "honeypotFieldError": "This field must be empty",
+    "honeypotLabel": "Do not fill this field",
+    "networkError": "Network error. Please try again later.",
+    "sendError": "Error sending message",
+    "required": "This field is required",
+    "requiredFields": "* Required fields",
+    "invalidEmail": "Invalid email",
+    "nameMinLength": "Name must be at least 2 characters",
+    "nameMaxLength": "Name cannot exceed 50 characters",
+    "nameOnlyLetters": "Name can only contain letters",
+    "emailMaxLength": "Email cannot exceed 100 characters",
+    "subjectMaxLength": "Subject cannot exceed 100 characters",
+    "messageMinLength": "Message must be at least 10 characters",
+    "messageMaxLength": "Message cannot exceed 1000 characters"
+  },
+  "Navbar": {
+    "logoAlt": "Diego's Logo",
+    "about": "About me",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "title": "Ready to work with me?",
+    "subtitle": "I'd love to collaborate with you and build something amazing.",
+    "contactButton": "CONTACT",
+    "home": "Home",
+    "about": "About me",
+    "projects": "Projects",
+    "contact": "Contact",
+    "copyright": "© {year} Diego — Built with Next.js, Tailwind and shadcn/ui.",
+    "github": "GitHub Profile",
+    "linkedin": "LinkedIn Profile",
+    "email": "Send email"
+  }
+}

@@ -6,15 +6,14 @@ import SkillsSection from "@/components/SkillsSection"
 import TechCarousel from "@/components/TechSection"
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <TechCarousel />
-      <About />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-    </>
-  )
+    return (
+        <>
+            <Hero />
+            <TechCarousel />
+            <About />
+            <SkillsSection />
+            <ProjectsSection />
+            <ContactSection />
+        </>
+    )
 }
-

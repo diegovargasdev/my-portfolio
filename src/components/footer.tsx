@@ -2,26 +2,32 @@
 
 import Link from "next/link";
 import { Mail, Github, Linkedin } from "lucide-react";
+import { useTranslations } from 'next-intl';
+import { useAnchorNavigation } from "@/hooks/useAnchorNavigation";
 
 export default function Footer() {
+    const t = useTranslations('Footer');
+    const { handleAnchorClick, buildHref } = useAnchorNavigation();
+
     return (
         <footer className="border-t mt-28 bg-black text-neutral-300">
             <div className="container mx-auto px-6 md:px-12 py-16">
                 <div className="text-center mb-16">
                     <h2 className="text-2xl md:text-3xl font-semibold mb-3">
-                        ¿Listo para trabajar conmigo?
+                        {t('title')}
                     </h2>
 
                     <p className="text-neutral-400 mb-6">
-                        Me encantaría colaborar contigo y construir algo increíble.
+                        {t('subtitle')}
                     </p>
 
                     <a
-                        href="mailto:diegovargas.devweb@gmail.com"
-                        className="inline-block px-10 py-3 rounded-xl border border-neutral-700 text-sm tracking-wider transition-all duration-300 relative hover:border-pink-500 hover:text-pink-500"
+                        href={buildHref('contact')}
+                        onClick={(e) => handleAnchorClick(e, buildHref('contact'))}
+                        className="inline-block px-10 py-3 rounded-xl border border-neutral-700 text-sm tracking-wider transition-all duration-300 relative hover:border-pink-500 hover:text-pink-500 group"
                     >
-                        <span className="absolute inset-0 rounded-xl bg-pink-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100"></span>
-                        <span className="relative z-10">CONTACTAR</span>
+                        <span className="absolute inset-0 rounded-xl bg-pink-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                        <span className="relative z-10">{t('contactButton')}</span>
                     </a>
                 </div>
                 <div className="flex justify-center gap-10 mb-14">
@@ -29,35 +35,68 @@ export default function Footer() {
                         href="https://github.com/diegovargasdev"
                         Icon={Github}
                         color="pink"
+                        label={t('github')}
                     />
                     <SocialIcon
                         href="https://linkedin.com/in/TU_USUARIO"
                         Icon={Linkedin}
                         color="green"
+                        label={t('linkedin')}
                     />
                     <SocialIcon
                         href="mailto:diegovargas.devweb@gmail.com"
                         Icon={Mail}
                         color="pink"
+                        label={t('email')}
                     />
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8 text-sm text-neutral-400 mb-14">
-                    <FooterLink href="/">Inicio</FooterLink>
-                    <FooterLink href="/#about">Sobre mí</FooterLink>
-                    <FooterLink href="/#projects">Proyectos</FooterLink>
-                    <FooterLink href="/#contact">Contacto</FooterLink>
+                    <FooterLink
+                        href={buildHref()}
+                        onClick={(e) => handleAnchorClick(e, buildHref())}
+                    >
+                        {t('home')}
+                    </FooterLink>
+                    <FooterLink
+                        href={buildHref('about')}
+                        onClick={(e) => handleAnchorClick(e, buildHref('about'))}
+                    >
+                        {t('about')}
+                    </FooterLink>
+                    <FooterLink
+                        href={buildHref('projects')}
+                        onClick={(e) => handleAnchorClick(e, buildHref('projects'))}
+                    >
+                        {t('projects')}
+                    </FooterLink>
+                    <FooterLink
+                        href={buildHref('contact')}
+                        onClick={(e) => handleAnchorClick(e, buildHref('contact'))}
+                    >
+                        {t('contact')}
+                    </FooterLink>
                 </div>
 
                 <div className="border-t border-neutral-800 pt-6 text-center text-xs text-neutral-500">
-                    © {new Date().getFullYear()} Diego — Desarrollado con Next.js, Tailwind y shadcn/ui.
+                    {t('copyright', { year: new Date().getFullYear() })}
                 </div>
             </div>
         </footer>
     );
 }
 
-function SocialIcon({ href, Icon, color }: { href: string; Icon: any; color: "pink" | "green" }) {
+function SocialIcon({
+    href,
+    Icon,
+    color,
+    label
+}: {
+    href: string;
+    Icon: any;
+    color: "pink" | "green";
+    label: string;
+}) {
     const hoverColor = color === "pink" ? "hover:text-pink-500" : "hover:text-green-500";
     const underlineColor = color === "pink" ? "bg-pink-500" : "bg-green-500";
 
@@ -65,7 +104,9 @@ function SocialIcon({ href, Icon, color }: { href: string; Icon: any; color: "pi
         <Link
             href={href}
             target="_blank"
-            className={`text-neutral-500 transition-all duration-300 relative ${hoverColor}`}
+            rel="noopener noreferrer"
+            aria-label={label}
+            className={`group text-neutral-500 transition-all duration-300 relative ${hoverColor}`}
         >
             <Icon size={22} />
             <span
@@ -75,10 +116,17 @@ function SocialIcon({ href, Icon, color }: { href: string; Icon: any; color: "pi
     );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+interface FooterLinkProps {
+    href: string;
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    children: React.ReactNode;
+}
+
+function FooterLink({ href, onClick, children }: FooterLinkProps) {
     return (
         <Link
             href={href}
+            onClick={onClick}
             className="relative text-neutral-400 hover:text-white transition-all duration-300 px-1"
         >
             {children}
