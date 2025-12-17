@@ -7,7 +7,8 @@
         "greeting": "Hola, soy Diego.",
         "description": "Developer apasionado por aprender y construir soluciones digitales.",
         "viewProjects": "Ver proyectos",
-        "aboutMe": "Sobre mí"
+        "aboutMe": "Sobre mí",
+        "downloadCV": "Descargar CV"
     },
     "About": {
         "title": "Sobre mí",
