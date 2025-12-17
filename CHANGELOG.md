@@ -35,3 +35,8 @@
 ## v1.3.2- vulnerable version
 ### Security
 - Updated Next.js to patched version addressing reported vulnerability (Vercel advisory)
+
+## v1.3.3- update 
+### Changed
+- update dowloader pdf
+- update cv
