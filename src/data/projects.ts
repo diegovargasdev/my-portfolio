@@ -1,83 +1,102 @@
-export const getProjects = (locale: string = 'es') => {
-    const projectsData = {
-        es: [
-            {
-                id: 1,
-                slug: "concept-content-platform",
-                type: "concept",
-                title: "Content Management Platform (Concept)",
-                description:
-                    "Conceptual frontend module designed to explore dynamic content rendering, routing strategies, and data-driven UI patterns in a modern web application.",
+export interface ProjectImage {
+    src: string
+    title?: string
+    text?: string
+}
 
-                objective:
-                    "Demonstrate scalable frontend architecture for handling dynamic content and reusable UI components.",
+export interface Project {
+    id: number
+    slug: string
+    type: string
+    title: string
+    description: string
+    objective?: string
+    challenges?: string[]
+    myRole?: string
+    results?: string
+    tech?: string[]
+    thumbnail?: string | null
+    images?: ProjectImage[]
+}
 
-                challenges: [
-                    "Designing dynamic routes for content-driven pages.",
-                    "Handling loading, error, and empty states in asynchronous data fetching.",
-                    "Optimizing rendering strategies for performance and scalability."
-                ],
+const projectsData: Record<'es' | 'en', Project[]> = {
+    es: [
+        {
+            id: 1,
+            slug: "concept-content-platform",
+            type: "concept",
+            title: "Content Management Platform (Concept)",
+            description:
+                "Conceptual frontend module designed to explore dynamic content rendering, routing strategies, and data-driven UI patterns in a modern web application.",
 
-                myRole:
-                    "Frontend architecture design, component implementation, data consumption patterns, and UI optimization.",
+            objective:
+                "Demonstrate scalable frontend architecture for handling dynamic content and reusable UI components.",
 
-                results:
-                    "Conceptual implementation focused on maintainability, performance, and clean code structure.",
+            challenges: [
+                "Designing dynamic routes for content-driven pages.",
+                "Handling loading, error, and empty states in asynchronous data fetching.",
+                "Optimizing rendering strategies for performance and scalability."
+            ],
 
-                tech: [
-                    "Next.js",
-                    "React",
-                    "TypeScript",
-                    "REST / GraphQL (conceptual)",
-                    "Tailwind CSS"
-                ],
+            myRole:
+                "Frontend architecture design, component implementation, data consumption patterns, and UI optimization.",
 
-                thumbnail: null,
+            results:
+                "Conceptual implementation focused on maintainability, performance, and clean code structure.",
 
-                images: []
-            }
-        ],
-        en: [
-            {
-                id: 1,
-                slug: "concept-content-platform",
-                type: "concept",
-                title: "Content Management Platform (Concept)",
-                description:
-                    "Conceptual frontend module designed to explore dynamic content rendering, routing strategies, and data-driven UI patterns in a modern web application.",
+            tech: [
+                "Next.js",
+                "React",
+                "TypeScript",
+                "REST / GraphQL (conceptual)",
+                "Tailwind CSS"
+            ],
 
-                objective:
-                    "Demonstrate scalable frontend architecture for handling dynamic content and reusable UI components.",
+            thumbnail: null,
 
-                challenges: [
-                    "Designing dynamic routes for content-driven pages.",
-                    "Handling loading, error, and empty states in asynchronous data fetching.",
-                    "Optimizing rendering strategies for performance and scalability."
-                ],
+            images: []
+        }
+    ],
+    en: [
+        {
+            id: 1,
+            slug: "concept-content-platform",
+            type: "concept",
+            title: "Content Management Platform (Concept)",
+            description:
+                "Conceptual frontend module designed to explore dynamic content rendering, routing strategies, and data-driven UI patterns in a modern web application.",
 
-                myRole:
-                    "Frontend architecture design, component implementation, data consumption patterns, and UI optimization.",
+            objective:
+                "Demonstrate scalable frontend architecture for handling dynamic content and reusable UI components.",
 
-                results:
-                    "Conceptual implementation focused on maintainability, performance, and clean code structure.",
+            challenges: [
+                "Designing dynamic routes for content-driven pages.",
+                "Handling loading, error, and empty states in asynchronous data fetching.",
+                "Optimizing rendering strategies for performance and scalability."
+            ],
 
-                tech: [
-                    "Next.js",
-                    "React",
-                    "TypeScript",
-                    "REST / GraphQL (conceptual)",
-                    "Tailwind CSS"
-                ],
+            myRole:
+                "Frontend architecture design, component implementation, data consumption patterns, and UI optimization.",
 
-                thumbnail: null,
+            results:
+                "Conceptual implementation focused on maintainability, performance, and clean code structure.",
 
-                images: []
-            }
+            tech: [
+                "Next.js",
+                "React",
+                "TypeScript",
+                "REST / GraphQL (conceptual)",
+                "Tailwind CSS"
+            ],
 
-        ]
-    };
+            thumbnail: null,
 
-    return projectsData[locale as 'es' | 'en'] || projectsData.es;
-};
+            images: []
+        }
+    ]
+}
 
-export const projects = getProjects('es');
+export const getProjects = (locale: string = 'es'): Project[] => {
+    return projectsData[locale as 'es' | 'en'] ?? projectsData.es
+}
+
