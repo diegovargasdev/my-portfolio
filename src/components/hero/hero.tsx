@@ -59,8 +59,8 @@ export function Hero() {
                             onClick={(e) => handleAnchorClick(e as any, buildHref('projects'))}
                             asChild
                         >
-                            <a href={buildHref('projects')}>
-                                {t('viewProjects')}
+                            <a href={buildHref('experience')}>
+                                {t('viewExperience')}
                             </a>
                         </Button>
                         <Button
