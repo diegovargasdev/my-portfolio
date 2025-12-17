@@ -113,5 +113,9 @@
         "github": "Perfil de GitHub",
         "linkedin": "Perfil de LinkedIn",
         "email": "Enviar email"
+    },
+    "Experience": {
+        "title": "Experiencia profesional",
+        "subtitle": "Responsabilidad real en productos en producción"
     }
 }

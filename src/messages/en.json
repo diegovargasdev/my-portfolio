@@ -113,5 +113,9 @@
     "github": "GitHub Profile",
     "linkedin": "LinkedIn Profile",
     "email": "Send email"
+  },
+  "Experience": {
+    "title": "Professional experience",
+    "subtitle": "Real ownership over production systems"
   }
 }
