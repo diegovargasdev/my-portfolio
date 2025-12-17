@@ -11,6 +11,15 @@ export function Hero() {
     const t = useTranslations('Hero')
     const { handleAnchorClick, buildHref } = useAnchorNavigation()
 
+    const handleDownloadCV = () => {
+        const link = document.createElement('a')
+        link.href = 'documents/cv.pdf'
+        link.download = 'Diego_Vargas_Frontend_Developer.pdf'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+
     return (
         <section className="relative w-full overflow-hidden min-h-[65vh] flex items-center">
             <HeroLines />
@@ -44,12 +53,9 @@ export function Hero() {
                             size="lg"
                             variant="outline"
                             className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
-                            onClick={(e) => handleAnchorClick(e as any, buildHref('about'))}
-                            asChild
+                            onClick={handleDownloadCV}
                         >
-                            <a href={buildHref('about')}>
-                                {t('aboutMe')}
-                            </a>
+                            {t('downloadCV')}
                         </Button>
                     </div>
                 </motion.div>
