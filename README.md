@@ -20,7 +20,6 @@ This project uses a **feature-based Git workflow**.
 Major updates are documented in a changelog.
 
 ## 🗺️ Roadmap
-- CV management from the website
 - Backend service to manage projects and CV
 - Mobile application to update portfolio content remotely
 

@@ -27,3 +27,11 @@
 - Public project showcases removed
 - Content structure refined to focus on experience, skills, and professional profile
 - Information hierarchy improved for clearer recruiter-focused navigation
+
+## v1.3.1- fix project export
+### Changed
+- How project data is exported
+
+## v1.3.2- vulnerable version
+### Security
+- Updated Next.js to patched version addressing reported vulnerability (Vercel advisory)
