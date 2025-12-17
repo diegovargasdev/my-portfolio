@@ -2,38 +2,35 @@
 
 import { motion } from "framer-motion";
 import { PinkCoding, PinkGear, PinkLayer, PinkNetwork, PinkPointer, PinkRocket } from "./icons";
+import { useTranslations } from 'next-intl';
 
 export default function SkillsSection() {
+    const t = useTranslations('Skills');
+    
     const skills = [
         {
             icon: <PinkLayer className="w-8 h-8" />,
-            title: "Desarrollo Front‑End Moderno",
-            text: "Creo interfaces con React, Next.js y componentes reutilizables, siguiendo buenas prácticas y cuidando la experiencia del usuario.",
+            key: "frontend"
         },
         {
             icon: <PinkNetwork className="w-8 h-8" />,
-            title: "Integración de APIs y CMS",
-            text: "Consumo APIs REST y sistemas headless como Hygraph, creando flujos de datos limpios, eficientes y totalmente dinámicos.",
+            key: "apis"
         },
         {
             icon: <PinkGear className="w-8 h-8" />,
-            title: "Arquitectura y Modularidad",
-            text: "Desarrollo módulos completos dentro de proyectos existentes sin romper la estructura, integrando lógica, vistas y configuraciones internas.",
+            key: "architecture"
         },
         {
             icon: <PinkPointer className="w-8 h-8" />,
-            title: "UI/UX y Componentización",
-            text: "Uso shadcn/ui, Material UI y Tailwind para crear interfaces coherentes, pulidas y enfocadas en la accesibilidad.",
+            key: "uiux"
         },
         {
             icon: <PinkCoding className="w-8 h-8" />,
-            title: "Optimización y Buenas Prácticas",
-            text: "Me enfoco en rendimiento, orden, legibilidad y patrones modernos para asegurar código sólido y escalable.",
+            key: "optimization"
         },
         {
             icon: <PinkRocket className="w-8 h-8" />,
-            title: "Mentalidad de Crecimiento",
-            text: "Aprendo rápido, me adapto y disfruto construir soluciones completas con tecnologías modernas.",
+            key: "growth"
         },
     ];
 
@@ -46,14 +43,14 @@ export default function SkillsSection() {
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-bold mb-16"
             >
-                Lo que aporto como desarrollador
+                {t('title')}
                 <span className="block h-1 w-24 mt-2 bg-pink-500 rounded-full"></span>
             </motion.h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {skills.map((skill, i) => (
                     <motion.div
-                        key={i}
+                        key={skill.key}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -71,8 +68,12 @@ export default function SkillsSection() {
                             {skill.icon}
                         </div>
 
-                        <h3 className="font-bold text-lg mb-2">{skill.title}</h3>
-                        <p className="text-sm leading-relaxed">{skill.text}</p>
+                        <h3 className="font-bold text-lg mb-2">
+                            {t(`skills.${skill.key}.title`)}
+                        </h3>
+                        <p className="text-sm leading-relaxed">
+                            {t(`skills.${skill.key}.text`)}
+                        </p>
                     </motion.div>
                 ))}
             </div>

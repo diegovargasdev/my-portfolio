@@ -4,8 +4,22 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { HeroLines } from "./hero-lines"
 import { HeroAvatar } from "./hero-avatar"
+import { useTranslations } from 'next-intl'
+import { useAnchorNavigation } from "@/hooks/useAnchorNavigation"
 
 export function Hero() {
+    const t = useTranslations('Hero')
+    const { handleAnchorClick, buildHref } = useAnchorNavigation()
+
+    const handleDownloadCV = () => {
+        const link = document.createElement('a')
+        link.href = 'documents/cv.pdf'
+        link.download = 'Diego_Vargas_Frontend_Developer.pdf'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+
     return (
         <section className="relative w-full overflow-hidden min-h-[65vh] flex items-center">
             <HeroLines />
@@ -17,24 +31,31 @@ export function Hero() {
                     className="flex flex-col gap-6 w-full md:w-[55%] text-center md:text-left"
                 >
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight dark:text-white">
-                        Hola, soy Diego.
+                        {t('greeting')}
                     </h1>
 
                     <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300">
-                        Developer apasionado por aprender y construir soluciones digitales.
+                        {t('description')}
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                        <Button size="lg" className="font-semibold w-full md:w-auto">
-                            Ver proyectos
+                        <Button
+                            size="lg"
+                            className="font-semibold w-full md:w-auto"
+                            onClick={(e) => handleAnchorClick(e as any, buildHref('projects'))}
+                            asChild
+                        >
+                            <a href={buildHref('projects')}>
+                                {t('viewProjects')}
+                            </a>
                         </Button>
-
                         <Button
                             size="lg"
                             variant="outline"
                             className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
+                            onClick={handleDownloadCV}
                         >
-                            Sobre mí
+                            {t('downloadCV')}
                         </Button>
                     </div>
                 </motion.div>

@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 
 export default function About() {
+    const t = useTranslations('About');
+
     return (
         <section
             id="about"
@@ -16,7 +19,7 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-bold mb-16"
             >
-                Sobre mí
+                {t('title')}
                 <span className="block h-[3px] w-16 mt-2 bg-gradient-to-r from-pink-500 to-green-400 rounded-full"></span>
             </motion.h2>
 
@@ -30,28 +33,19 @@ export default function About() {
                     className="space-y-6 text-base md:text-lg leading-relaxed"
                 >
                     <p>
-                        Soy Diego, desarrollador enfocado en Front-End con formación en Ingeniería en
-                        Sistemas Computacionales. Me apasiona crear interfaces limpias, rápidas y
-                        funcionales, combinando diseño y tecnología para construir experiencias
-                        web modernas.
+                        {t('paragraph1')}
                     </p>
 
                     <p>
-                        Trabajo principalmente con React, Next.js, shadcn/ui, Tailwind y APIs REST.
-                        Me especializo en transformar ideas en interfaces usables, manteniendo buenas
-                        prácticas, arquitectura clara y rendimiento óptimo.
+                        {t('paragraph2')}
                     </p>
 
                     <p>
-                        Cada proyecto ha sido una oportunidad para profundizar en temas como
-                        accesibilidad, diseño responsivo, animaciones, patrones de componentes,
-                        consumo de APIs y construcción de sistemas visuales escalables.
+                        {t('paragraph3')}
                     </p>
 
                     <p>
-                        Actualmente busco seguir creciendo como Full-Stack, ampliando mis habilidades
-                        en backend y cloud mientras desarrollo proyectos con calidad profesional y
-                        atención al detalle.
+                        {t('paragraph4')}
                     </p>
                 </motion.div>
                 <motion.div
@@ -69,7 +63,7 @@ export default function About() {
                     >
                         <Image
                             src="/avatar/avatar-about.png"
-                            alt="Avatar pixel art"
+                            alt={t('avatarAlt')}
                             fill
                             className="image-render-pixel object-cover rounded-xl shadow-md"
                         />

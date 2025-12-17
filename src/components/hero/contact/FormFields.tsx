@@ -2,7 +2,6 @@ import React from "react";
 import { FormState, FieldErrors, TouchedFields } from "./FormSchema";
 import { getFieldValue } from "./FormUtils";
 
-// Props para los campos
 interface FieldProps {
     form: FormState;
     errors: FieldErrors;
@@ -10,12 +9,12 @@ interface FieldProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     getInputClass: (fieldName: keyof FormState) => string;
+    t?: (key: string) => string;
 }
 
-// Componente para el campo honeypot
-export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur }) => (
+export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur, t }) => (
     <div className="absolute left-[-9999px]" aria-hidden="true">
-        <label htmlFor="website">No llenar este campo</label>
+        <label htmlFor="website">{t ? t('honeypotLabel') : 'No llenar este campo'}</label>
         <input
             id="website"
             name="website"
@@ -30,7 +29,6 @@ export const HoneypotField: React.FC<FieldProps> = ({ form, onChange, onBlur }) 
     </div>
 );
 
-// Componente para mostrar errores
 export const ErrorMessage: React.FC<{ error: string }> = ({ error }) => (
     <div className="flex items-center gap-1 mt-1">
         <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
@@ -40,7 +38,6 @@ export const ErrorMessage: React.FC<{ error: string }> = ({ error }) => (
     </div>
 );
 
-// Campo de texto input
 export const TextInput: React.FC<
     FieldProps & {
         name: keyof FormState;
@@ -68,7 +65,6 @@ export const TextInput: React.FC<
     </div>
 );
 
-// Campo de textarea
 export const TextAreaInput: React.FC<
     FieldProps & {
         name: keyof FormState;
@@ -77,7 +73,7 @@ export const TextAreaInput: React.FC<
         characterCount: number;
         required?: boolean;
     }
-> = ({ form, errors, touched, onChange, onBlur, getInputClass, name, placeholder, rows = 6, characterCount, required = false }) => (
+> = ({ form, errors, touched, onChange, onBlur, getInputClass, name, placeholder, rows = 6, characterCount, required = false, t }) => (
     <div className="relative">
         <textarea
             name={name}
@@ -96,7 +92,7 @@ export const TextAreaInput: React.FC<
         )}
         <div className="flex justify-between items-center mt-2 px-1">
             <p className="text-sm text-neutral-400">
-                * Campos obligatorios
+                {t ? t('requiredFields') : '* Campos obligatorios'}
             </p>
             <p className={`text-sm ${characterCount > 1000 ? 'text-red-500' : characterCount >= 10 ? 'text-green-500' : 'text-neutral-400'}`}>
                 {characterCount}/1000

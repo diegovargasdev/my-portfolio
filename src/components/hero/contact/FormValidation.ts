@@ -1,18 +1,18 @@
 import { z } from "zod";
-import { formSchema, FormState, FieldErrors } from "./FormSchema";
+import { getFormSchema, FormState, FieldErrors } from "./FormSchema";
 
-// Validar campo individual
 export const validateField = (
     name: keyof FormState,
     value: string,
-    setErrors: (errors: FieldErrors | ((prev: FieldErrors) => FieldErrors)) => void
+    setErrors: (errors: FieldErrors | ((prev: FieldErrors) => FieldErrors)) => void,
+    t: (key: string) => string
 ): boolean => {
     const stringValue = value || "";
+    const formSchema = getFormSchema(t);
 
-    // Para el campo website (honeypot)
     if (name === "website") {
         if (stringValue.trim() !== "") {
-            setErrors((prev) => ({ ...prev, [name]: "Este campo debe estar vacío" }));
+            setErrors((prev) => ({ ...prev, [name]: t('honeypotFieldError') }));
             return false;
         }
         setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -20,7 +20,6 @@ export const validateField = (
     }
 
     try {
-        // Validar usando el esquema parcialmente
         if (name === "name") {
             formSchema.shape.name.parse(stringValue);
         } else if (name === "email") {
@@ -35,20 +34,21 @@ export const validateField = (
         return true;
     } catch (error) {
         if (error instanceof z.ZodError) {
-            const fieldError = error.issues[0]?.message || "Error de validación";
+            const fieldError = error.issues[0]?.message || t('validationError');
             setErrors((prev) => ({ ...prev, [name]: fieldError }));
         } else {
-            setErrors((prev) => ({ ...prev, [name]: "Error de validación" }));
+            setErrors((prev) => ({ ...prev, [name]: t('validationError') }));
         }
         return false;
     }
 };
 
-// Validar todo el formulario
 export const validateForm = (
     form: FormState,
-    setErrors: (errors: FieldErrors | ((prev: FieldErrors) => FieldErrors)) => void
+    setErrors: (errors: FieldErrors | ((prev: FieldErrors) => FieldErrors)) => void,
+    t: (key: string) => string
 ): boolean => {
+    const formSchema = getFormSchema(t);
     try {
         formSchema.parse(form);
         setErrors({});

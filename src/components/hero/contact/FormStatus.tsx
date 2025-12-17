@@ -58,7 +58,8 @@ export const StatusMessage: React.FC<FormStatusProps> = ({ status }) => {
 export const SubmitButton: React.FC<FormStatusProps & {
     disabled: boolean;
     onClick?: () => void;
-}> = ({ loading, disabled, onClick }) => (
+    t?: (key: string) => string;
+}> = ({ loading, disabled, onClick, t }) => (
     <button
         type="submit"
         onClick={onClick}
@@ -68,10 +69,10 @@ export const SubmitButton: React.FC<FormStatusProps & {
         {loading ? (
             <>
                 <LoadingSpinner />
-                Enviando...
+                {t ? t('sendingButton') : 'Enviando...'}
             </>
         ) : (
-            "Enviar mensaje"
+            t ? t('sendButton') : "Enviar mensaje"
         )}
     </button>
 );
