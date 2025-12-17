@@ -38,7 +38,7 @@ export default function Footer() {
                         label={t('github')}
                     />
                     <SocialIcon
-                        href="https://linkedin.com/in/TU_USUARIO"
+                        href="https://www.linkedin.com/in/luis-diego-vargas-alaniz-660b95263"
                         Icon={Linkedin}
                         color="green"
                         label={t('linkedin')}
