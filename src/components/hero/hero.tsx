@@ -11,13 +11,27 @@ export function Hero() {
     const t = useTranslations('Hero')
     const { handleAnchorClick, buildHref } = useAnchorNavigation()
 
-    const handleDownloadCV = () => {
-        const link = document.createElement('a')
-        link.href = 'documents/cv.pdf'
-        link.download = 'Diego_Vargas_Frontend_Developer.pdf'
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+    const handleDownloadCV = async () => {
+        try {
+            const res = await fetch('/documents/cv.pdf')
+            if (!res.ok) throw new Error('Network response was not ok')
+            const blob = await res.blob()
+            const url = URL.createObjectURL(blob)
+            const link = document.createElement('a')
+            link.href = url
+            link.download = 'Diego_Vargas_Frontend_Developer.pdf'
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            URL.revokeObjectURL(url)
+        } catch (err) {
+            const link = document.createElement('a')
+            link.href = '/documents/cv.pdf'
+            link.download = 'Diego_Vargas_Frontend_Developer.pdf'
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+        }
     }
 
     return (
