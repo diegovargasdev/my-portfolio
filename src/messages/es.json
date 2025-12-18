@@ -100,7 +100,8 @@
         "logoAlt": "Logo de Diego",
         "about": "Sobre mí",
         "projects": "Proyectos",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "experience": "Experiencia"
     },
     "Footer": {
         "title": "¿Listo para trabajar conmigo?",
@@ -113,7 +114,8 @@
         "copyright": "© {year} Diego — Desarrollado con Next.js, Tailwind y shadcn/ui.",
         "github": "Perfil de GitHub",
         "linkedin": "Perfil de LinkedIn",
-        "email": "Enviar email"
+        "email": "Enviar email",
+        "experience": "Experiencia"
     },
     "Experience": {
         "title": "Experiencia profesional",
