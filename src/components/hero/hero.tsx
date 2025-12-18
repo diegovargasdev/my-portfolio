@@ -56,7 +56,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             className="font-semibold w-full md:w-auto"
-                            onClick={(e) => handleAnchorClick(e as any, buildHref('projects'))}
+                            onClick={(e) => handleAnchorClick(e as any, buildHref('experience'))}
                             asChild
                         >
                             <a href={buildHref('experience')}>

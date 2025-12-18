@@ -65,10 +65,10 @@ export default function Footer() {
                         {t('about')}
                     </FooterLink>
                     <FooterLink
-                        href={buildHref('projects')}
-                        onClick={(e) => handleAnchorClick(e, buildHref('projects'))}
+                        href={buildHref('experience')}
+                        onClick={(e) => handleAnchorClick(e, buildHref('experience'))}
                     >
-                        {t('projects')}
+                        {t('experience')}
                     </FooterLink>
                     <FooterLink
                         href={buildHref('contact')}

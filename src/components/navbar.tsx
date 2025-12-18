@@ -45,8 +45,8 @@ export default function Navbar() {
             color: "hover:text-green-500",
         },
         {
-            label: t('projects'),
-            anchor: "projects",
+            label: t('experience'),
+            anchor: "experience",
             color: "hover:text-pink-500",
         },
         {
