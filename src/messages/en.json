@@ -100,7 +100,8 @@
     "logoAlt": "Diego's Logo",
     "about": "About me",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "experience": "Experience"
   },
   "Footer": {
     "title": "Ready to work with me?",
@@ -113,7 +114,8 @@
     "copyright": "© {year} Diego — Built with Next.js, Tailwind and shadcn/ui.",
     "github": "GitHub Profile",
     "linkedin": "LinkedIn Profile",
-    "email": "Send email"
+    "email": "Send email",
+    "experience": "Experience"
   },
   "Experience": {
     "title": "Professional experience",
