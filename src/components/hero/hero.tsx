@@ -27,7 +27,7 @@ export function Hero() {
         } catch (err) {
             const link = document.createElement('a')
             link.href = '/documents/cv.pdf'
-            link.download = 'Diego_Vargas_Frontend_Developer.pdf'
+            link.download = 'Diego_Vargas_Developer.pdf'
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link)
@@ -66,7 +66,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto"
+                            className="border-green-400 text-green-400 font-semibold hover:bg-green-100/30 w-full md:w-auto cursor-pointer"
                             onClick={handleDownloadCV}
                         >
                             {t('downloadCV')}
